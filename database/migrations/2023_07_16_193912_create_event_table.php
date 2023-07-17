@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('event_type_id');
             $table->foreign('event_type_id')->references('id')->on('event_type');
+            $table->string('name');
             $table->date('start_date');
             $table->date('end_date');
             $table->string('location');

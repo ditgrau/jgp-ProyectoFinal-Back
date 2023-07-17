@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('days', 100);
             $table->time('start_hour');
             $table->time('end_hour');
-            $table->string('location', 100);
+            $table->string('location', 200);
             $table->timestamps();
         });
     }
