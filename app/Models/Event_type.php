@@ -12,4 +12,6 @@ class Event_type extends Model
     public function event(){
         return $this -> hasMany(Event::class);
     }
+
+    protected $table = 'event_type';
 }

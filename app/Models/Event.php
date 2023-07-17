@@ -12,4 +12,10 @@ class Event extends Model
     public function event_type(){
         return $this -> belongsTo(Event_type::class);
     }
+
+    public function user () {
+        return $this->belongsToMany(User::class, 'user_group', 'event_id', 'user_id');
+    }
+
+    protected $table = 'event';
 }

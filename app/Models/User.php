@@ -46,4 +46,22 @@ class User extends Authenticatable
     public function role(){
         return $this -> belongsTo(Role::class);
     }
+
+    public function result() {
+        return $this -> hasMany(Result::class);
+    }
+
+    public function user_data() {
+        return $this -> hasOne(User_data::class);
+    }
+
+    public function group () {
+        return $this->belongsToMany(Group::class, 'user_group', 'user_id', 'group_id');
+    }
+
+    public function event () {
+        return $this->belongsToMany(Event::class, 'user_event', 'user_id', 'event_id');
+    }
+
+    protected $table = 'users';
 }
