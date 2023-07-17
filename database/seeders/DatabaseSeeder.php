@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         $this -> call(
             [
                 RoleSeeder::class,
+                Event_typeSeeder::class,
             ]
             );
 
