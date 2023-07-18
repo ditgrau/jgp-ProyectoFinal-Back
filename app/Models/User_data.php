@@ -14,6 +14,7 @@ class User_data extends Model
         'contact_email',
         'first_phone',
         'second_phone',
+        'birth_date',
         'dni'
     ];
 

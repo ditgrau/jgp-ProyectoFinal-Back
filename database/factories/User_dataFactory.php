@@ -21,6 +21,7 @@ class User_dataFactory extends Factory
             'contact_email'=> fake()->safeEmail(),
             'first_phone' => 6 . fake()->randomNumber(8, true),
             'second_phone' => 6 . fake()->randomNumber(8, true),
+            'birth_date' => fake()->dateTimeBetween($startDate = '1998-01-01', $endDate = '2017-01-01'),
             'dni' => fake()->randomNumber(8, true).strtoupper(fake()->randomLetter()),
         ];
     }

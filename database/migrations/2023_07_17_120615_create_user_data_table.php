@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('contact_email');
             $table->string('first_phone');
             $table->string('second_phone');
+            $table->date('birth_date');
             $table->string('dni');
             $table->timestamps();
         });
