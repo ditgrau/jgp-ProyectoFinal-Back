@@ -9,6 +9,14 @@ class User_data extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'surname',
+        'contact_email',
+        'first_phone',
+        'second_phone',
+        'dni'
+    ];
+
     public function user() {
         return $this -> belongsTo(User::class);
     }

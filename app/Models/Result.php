@@ -9,6 +9,15 @@ class Result extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'difficulty',
+        'artistic',
+        'execution',
+        'total',
+        'ranking'
+    ];
+
     public function user() {
         return $this -> belongsTo(User::class);
     }

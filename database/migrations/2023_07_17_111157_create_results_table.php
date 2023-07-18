@@ -16,12 +16,11 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('name');
-            $table->float('difficulty');
-            $table->float('artistic');
-            $table->float('execution');
+            $table->float('difficulty')->nullable();;
+            $table->float('artistic')->nullable();;
+            $table->float('execution')->nullable();;
             $table->float('total');
-            $table->float('average');
-            $table->integer('ranking');
+            $table->integer('ranking')->nullable();;
             $table->timestamps();
         });
     }
