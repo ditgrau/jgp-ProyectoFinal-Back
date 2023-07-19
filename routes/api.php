@@ -21,10 +21,4 @@ Route::post('/login', Login::class);
 Route::get('/getAllGroups', [GroupController::class, 'getAllGroups']);
 
 // ROLES CONTROLLER
-Route::get('/getAllRoles', [RoleController::class, 'getAllRoles']);
-
-
-
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::get('/getAllRoles', [RoleController::class, 'getAllRoles'])->middleware('auth:sanctum');
