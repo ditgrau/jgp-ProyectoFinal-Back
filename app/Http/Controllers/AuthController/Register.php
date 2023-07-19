@@ -46,9 +46,13 @@ class Register extends Controller
             ]);
 
             $newUser_data = User_data::create([
+                'user_id' => $newUser->id, 
+                'surname'=> $validData['surname'],
                 'contact_email'=> $validData['contact_email'],
                 'first_phone'=> $validData['first_phone'],
                 'second_phone'=> $validData['second_phone'],
+                'birth_date'=> $validData['birth_date'],
+                'dni'=> $validData['dni'],
             ]);
 
             $newUser->group()->attach($validData['group']);
