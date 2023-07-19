@@ -25,7 +25,7 @@ class Register extends Controller
                 'first_phone' => 'required|regex:/^\d{9}$/',
                 'second_phone' => 'required|regex:/^\d{9}$/',
                 'email' => 'required|email|unique:users,email',
-                'password' => 'required|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/',
+                'password' => 'required|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/',
             ]);
 
             if ($validator->fails()) {
