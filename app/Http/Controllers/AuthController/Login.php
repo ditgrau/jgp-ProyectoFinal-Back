@@ -47,7 +47,6 @@ class Login extends Controller
             }
 
             return response()->json([
-                'message' => 'User registered',
                 'data' => $user,
                 'token' => $token
             ], Response::HTTP_CREATED);
