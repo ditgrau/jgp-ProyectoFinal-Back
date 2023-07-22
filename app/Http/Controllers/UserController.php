@@ -89,7 +89,7 @@ class UserController extends Controller
     }
 }
 
-// 'confirmed' => 'nullable|boolean',
+// 
 // 'average' => 'nullable|float',
 // 'role_id' => 'nullable|integer',
 // $updatedUser = User::first($userId);
