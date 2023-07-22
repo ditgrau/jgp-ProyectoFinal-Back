@@ -11,7 +11,6 @@ class User_data extends Model
 
     protected $fillable = [
         'user_id',
-        'surname',
         'contact_email',
         'first_phone',
         'second_phone',

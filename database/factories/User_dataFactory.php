@@ -17,7 +17,6 @@ class User_dataFactory extends Factory
     public function definition(): array
     {
         return [
-            'surname' => fake()->lastName() ,
             'contact_email'=> fake()->safeEmail(),
             'first_phone' => 6 . fake()->randomNumber(8, true),
             'second_phone' => 6 . fake()->randomNumber(8, true),

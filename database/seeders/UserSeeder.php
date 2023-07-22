@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
             [
                 'role_id' => 1,
                 'name' => 'admin',
+                'surname' => 'admin',
                 'email' => 'admin@admin.com', 
                 'password' => bcrypt('admin-1234'),
                 'confirmed' => true
@@ -24,6 +25,7 @@ class UserSeeder extends Seeder
             [
                 'role_id' => 2,
                 'name' => 'coach',
+                'surname' => 'coach',
                 'email' => 'coach@coach.com', 
                 'password' => bcrypt('coach-1234'),
                 'confirmed' => true
@@ -31,6 +33,7 @@ class UserSeeder extends Seeder
             [
                 'role_id' => 3,
                 'name' => 'gimnasta',
+                'surname' => 'gimnasta',
                 'email' => 'gimnasta@gimnasta.com', 
                 'password' => bcrypt('gimnasta-1234'),
                 'confirmed' => true
