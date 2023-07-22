@@ -26,3 +26,4 @@ Route::get('/getAllRoles', [RoleController::class, 'getAllRoles'])->middleware('
 
 // USER CONTROLLER
 Route::get('/profile', [UserController::class, 'profile'])->middleware('auth:sanctum');;
+Route::put('/updateProfile', [UserController::class, 'updateProfile'])->middleware('auth:sanctum');;
