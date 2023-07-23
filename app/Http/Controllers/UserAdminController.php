@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Role;
+use App\Models\Group;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -10,12 +12,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserAdminController extends Controller
 {
-    public function getAllUSers()
+    public function getAllUsers()
     {
         try {
-            $users = User::select('id', 'name', 'surname', 'email')
-                ->with('role:name')->with('group:name')
+            $users = User::select('id', 'role_id', 'name', 'surname', 'email')
+                ->with('role')->with('group')
                 ->get();
+                // dd($users->toSql());
 
             return response()->json([
                 'message' => 'Users retrieved',
@@ -26,7 +29,7 @@ class UserAdminController extends Controller
             Log::error('Error getting users' . $th->getMessage());
 
             return response()->json([
-                'message' => 'Error retrieving groups'
+                'message' => 'Error retrieving users'
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }

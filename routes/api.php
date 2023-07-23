@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AuthController\Login;
 use App\Http\Controllers\AuthController\Register;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserAdminController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,5 +27,13 @@ Route::get('/getAllGroups', [GroupController::class, 'getAllGroups']);
 Route::get('/getAllRoles', [RoleController::class, 'getAllRoles'])->middleware('auth:sanctum');
 
 // USER CONTROLLER
-Route::get('/profile', [UserController::class, 'profile'])->middleware('auth:sanctum');;
-Route::put('/updateProfile', [UserController::class, 'updateProfile'])->middleware('auth:sanctum');;
+Route::get('/profile', [UserController::class, 'profile'])->middleware('auth:sanctum');
+Route::put('/updateProfile', [UserController::class, 'updateProfile'])->middleware('auth:sanctum');
+
+// USER CONTROLLER - ADMIN
+Route::get('/getUserUnconfirmed/{confirmed}', [UserAdminController::class, 'getUserUnconfirmed'])->middleware('auth:sanctum');
+Route::put('/updateConfirmation/{id}', [UserAdminController::class, 'updateConfirmation'])->middleware('auth:sanctum');
+Route::get('/getAllUsers', [UserAdminController::class, 'getAllUsers'])->middleware('auth:sanctum');
+
+// EVENT CONTROLLER
+Route::get('/getAllEvents', [EventController::class, 'getAllEvents'])->middleware('auth:sanctum');
