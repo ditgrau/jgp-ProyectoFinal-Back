@@ -37,3 +37,4 @@ Route::get('/getAllUsers', [UserAdminController::class, 'getAllUsers'])->middlew
 
 // EVENT CONTROLLER
 Route::get('/getAllEvents', [EventController::class, 'getAllEvents'])->middleware('auth:sanctum');
+Route::get('/getMyEvents', [EventController::class, 'getMyEvents'])->middleware('auth:sanctum');
