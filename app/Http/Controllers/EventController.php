@@ -29,6 +29,26 @@ class EventController extends Controller
         }
     }
 
+    public function getEventsByType($typeId) 
+    {
+        try {
+            $events = Event::where('event_type_id', $typeId)->get();
+            
+            return response()->json([
+                'message' => 'Events retrieved',
+                'data' => $events,
+                'success' => true
+            ], Response::HTTP_OK);
+
+        } catch (\Throwable $th) {
+            Log::error('Error retrieving events ' . $th->getMessage());
+
+            return response()->json([
+                'message' => 'Error retrieving events'
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
     // public function getMyEvents() 
     // {
     //     try {
