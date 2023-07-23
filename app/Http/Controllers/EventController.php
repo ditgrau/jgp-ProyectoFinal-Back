@@ -29,25 +29,26 @@ class EventController extends Controller
         }
     }
 
-    public function getMyEvents() 
-    {
-        try {
-            $user = auth()->user();
-            $userId = $user->id;
-            $events = Event::where('user_id', $userId)->get();
+    // public function getMyEvents() 
+    // {
+    //     try {
+    //         $user = auth()->user();
+    //         $userId = $user->id;
+    //         $events = Event::where('user_id', $userId)->get();
             
-            return response()->json([
-                'message' => 'Events retrieved',
-                'data' => $events,
-                'success' => true
-            ], Response::HTTP_OK);
+    //         return response()->json([
+    //             'message' => 'Events retrieved',
+    //             'data' => $events,
+    //             'success' => true
+    //         ], Response::HTTP_OK);
 
-        } catch (\Throwable $th) {
-            Log::error('Error retrieving events ' . $th->getMessage());
+    //     } catch (\Throwable $th) {
+    //         Log::error('Error retrieving events ' . $th->getMessage());
 
-            return response()->json([
-                'message' => 'Error retrieving events'
-            ], Response::HTTP_INTERNAL_SERVER_ERROR);
-        }
-    }
+    //         return response()->json([
+    //             'message' => 'Error retrieving events'
+    //         ], Response::HTTP_INTERNAL_SERVER_ERROR);
+    //     }
+    // }
+    // TENGO QUE BUSCAR EN LA TABLA INTERMEDIA
 }
