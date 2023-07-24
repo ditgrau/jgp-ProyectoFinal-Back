@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Result;
 use App\Models\User_data;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -87,7 +88,40 @@ class UserController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    public function getAverage() 
+    {
+        try {
+            $user = auth()->user();
+            $userId = $user->id;
+
+            $totals = Result::where('user_id', $userId)->pluck('total');
+            
+            $average = $totals->avg();
+            $updatedUser = User::find($userId)->update(['average' => $average]);
+
+            return response()->json([
+                'message' => 'Results retrieved',
+                'data' => $totals,
+                'average' => $average,
+                'user' => $updatedUser,
+                'success' => true
+            ], Response::HTTP_OK);
+
+        } catch (\Throwable $th) {
+            Log::error('Error retrieving results ' . $th->getMessage());
+
+            return response()->json([
+                'message' => 'Error retrieving results'
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
 }
+
+
+
+
+
 
 // 
 // 'average' => 'nullable|float',

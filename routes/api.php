@@ -45,3 +45,8 @@ Route::get('/getEventsByType/{id}', [EventController::class, 'getEventsByType'])
 Route::get('/getAllResults', [ResultController::class, 'getAllResults'])->middleware('auth:sanctum');
 Route::get('/getMyResults', [ResultController::class, 'getMyResults'])->middleware('auth:sanctum');
 Route::get('/myLastResults', [ResultController::class, 'myLastResults'])->middleware('auth:sanctum');
+
+
+
+
+Route::get('/getAverage', [UserController::class, 'getAverage'])->middleware('auth:sanctum');
