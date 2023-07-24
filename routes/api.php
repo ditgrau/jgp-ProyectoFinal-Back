@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController\Login;
 use App\Http\Controllers\AuthController\Register;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\ResultController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserAdminController;
 use App\Http\Controllers\UserController;
@@ -38,3 +39,7 @@ Route::get('/getAllUsers', [UserAdminController::class, 'getAllUsers'])->middlew
 // EVENT CONTROLLER
 Route::get('/getAllEvents', [EventController::class, 'getAllEvents'])->middleware('auth:sanctum');
 Route::get('/getMyEvents', [EventController::class, 'getMyEvents'])->middleware('auth:sanctum');
+
+// RESULT CONTROLLER
+Route::get('/getAllResults', [ResultController::class, 'getAllResults'])->middleware('auth:sanctum');
+Route::get('/getMyResults', [ResultController::class, 'getMyResults'])->middleware('auth:sanctum');

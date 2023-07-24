@@ -17,6 +17,11 @@ class Result extends Model
         'total',
         'ranking'
     ];
+    
+    protected $hidden = [
+        'timestamps',
+    ];
+
 
     public function user() {
         return $this -> belongsTo(User::class);
