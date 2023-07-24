@@ -40,7 +40,7 @@ class ResultController extends Controller
             $user = auth()->user();
             $userId = $user->id;
 
-            $results = Result::where('user_id', $userId);
+            $results = Result::where('user_id', $userId)->get();
             
             return response()->json([
                 'message' => 'Results retrieved',
