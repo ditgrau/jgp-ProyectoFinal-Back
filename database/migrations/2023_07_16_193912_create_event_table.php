@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('event_type_id');
             $table->foreign('event_type_id')->references('id')->on('event_type');
             $table->string('name');
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->date('start_date')->default(now()->addDay());
+            $table->date('end_date')->default(now()->addDays(2));
             $table->string('location');
             $table->text('comment');
             $table->string('pdf_path')->nullable();
