@@ -8,6 +8,8 @@ use App\Models\Event;
 use App\Models\User;
 use App\Models\Result;
 use App\Models\User_data;
+use App\Models\User_event;
+use App\Models\User_group;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 
@@ -20,7 +22,8 @@ class DatabaseSeeder extends Seeder
                 RoleSeeder::class,
                 Event_typeSeeder::class,
                 UserSeeder::class,
-                GroupSeeder::class
+                GroupSeeder::class,
+                // User_event::class,
             ]
         );
 
@@ -28,5 +31,7 @@ class DatabaseSeeder extends Seeder
         User_data::factory(13)->state(new Sequence(['user_id' => 1], ['user_id' => 2], ['user_id' => 3], ['user_id' => 4], ['user_id' => 5], ['user_id' => 6], ['user_id' => 7], ['user_id' => 8], ['user_id' => 9], ['user_id' => 10], ['user_id' => 11], ['user_id' => 12], ['user_id' => 13]))->create();
         Event::factory(30)->state(new Sequence(['event_type_id' => 1, 'name' => 'Competicion'], ['event_type_id' => 2, 'name' => 'Entrenamiento extra'], ['event_type_id' => 3,'name' => 'Descanso']))->create();
         Result::factory(50)->state(new Sequence(['name' => 'Provincial'], ['name' => 'Autonomico'], ['name' => 'Nacional'], ['name' => 'Jocs'], ['name' => 'Trofeo Atzar'], ['name' => 'Trofeo Ruben Orihuela']))->create();
+        User_event::factory(90)->create();
+        User_group::factory(18)->create();
     }
 }
