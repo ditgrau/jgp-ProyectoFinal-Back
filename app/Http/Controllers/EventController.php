@@ -62,6 +62,29 @@ class EventController extends Controller
             return response()->json([
                 'message' => 'Events retrieved',
                 'data' => $events,
+                'success' => true,
+            ], Response::HTTP_OK);
+
+        } catch (\Throwable $th) {
+            Log::error('Error retrieving events ' . $th->getMessage());
+
+            return response()->json([
+                'message' => 'Error retrieving events'
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function myEventsByType($typeId) 
+    {
+        try {
+            $user = auth()->user();
+            $events = User_event::where('user_id', $user->id)
+            ->with('event')->where('event_type_id', $typeId)
+            ->get();
+            
+            return response()->json([
+                'message' => 'Events retrieved',
+                'data' => $events,
                 'success' => true
             ], Response::HTTP_OK);
 
@@ -73,6 +96,7 @@ class EventController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+    
     // TENGO QUE BUSCAR EN LA TABLA INTERMEDIA
 
 
