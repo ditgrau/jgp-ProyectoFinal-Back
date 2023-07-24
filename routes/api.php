@@ -23,6 +23,7 @@ Route::post('/login', Login::class);
 
 // GROUPS CONTROLLER
 Route::get('/getAllGroups', [GroupController::class, 'getAllGroups']);
+Route::get('/getMyGroups', [GroupController::class, 'getMyGroups']);
 
 // ROLES CONTROLLER
 Route::get('/getAllRoles', [RoleController::class, 'getAllRoles'])->middleware('auth:sanctum');
@@ -40,6 +41,7 @@ Route::get('/getAllUsers', [UserAdminController::class, 'getAllUsers'])->middlew
 Route::get('/getAllEvents', [EventController::class, 'getAllEvents'])->middleware('auth:sanctum');
 Route::get('/getMyEvents', [EventController::class, 'getMyEvents'])->middleware('auth:sanctum');
 Route::get('/getEventsByType/{id}', [EventController::class, 'getEventsByType'])->middleware('auth:sanctum');
+Route::get('/myEventsByType/{id}', [EventController::class, 'myEventsByType'])->middleware('auth:sanctum');
 
 // RESULT CONTROLLER
 Route::get('/getAllResults', [ResultController::class, 'getAllResults'])->middleware('auth:sanctum');
