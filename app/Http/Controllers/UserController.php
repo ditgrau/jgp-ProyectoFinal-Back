@@ -96,15 +96,17 @@ class UserController extends Controller
             $userId = $user->id;
 
             $totals = Result::where('user_id', $userId)->pluck('total');
+            $positions = Result::where('user_id', $userId)->pluck('ranking');
             
             $average = $totals->avg();
+            $ranking = $positions->avg();
             $updatedUser = User::find($userId)->update(['average' => $average]);
 
             return response()->json([
                 'message' => 'Results retrieved',
                 'data' => $totals,
                 'average' => $average,
-                'user' => $updatedUser,
+                'ranking' => $ranking,
                 'success' => true
             ], Response::HTTP_OK);
 
