@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Event;
 use App\Models\User;
@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
                 Event_typeSeeder::class,
                 UserSeeder::class,
                 GroupSeeder::class,
-                // User_event::class,
+                EventSeeder::class
             ]
         );
 

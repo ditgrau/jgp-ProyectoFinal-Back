@@ -18,7 +18,7 @@ class User_eventFactory extends Factory
     {
         return [
             'user_id'=> fake()->numberBetween($min = 3, $max = 13),
-            'event_id'=> fake()->numberBetween($min = 1, $max = 30),
+            'event_id'=> fake()->numberBetween($min = 1, $max = 35),
         ];
     }
 }

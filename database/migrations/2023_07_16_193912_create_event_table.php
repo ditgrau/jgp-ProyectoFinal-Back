@@ -17,9 +17,9 @@ return new class extends Migration
             $table->foreign('event_type_id')->references('id')->on('event_type');
             $table->string('name');
             $table->date('start_date')->default(now()->addDay());
-            $table->date('end_date')->default(now()->addDays(2));
+            $table->date('end_date')->default(now()->addDays(2))->nullable();
             $table->string('location');
-            $table->text('comment');
+            $table->text('comment')->nullable();
             $table->string('pdf_path')->nullable();
             $table->timestamps();
         });
