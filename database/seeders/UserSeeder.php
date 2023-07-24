@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
                 'name' => 'admin',
                 'surname' => 'admin',
                 'email' => 'admin@admin.com', 
-                'password' => bcrypt('admin-1234'),
+                'password' => bcrypt('Admin-1234'),
                 'confirmed' => true
             ],
             [
@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
                 'name' => 'coach',
                 'surname' => 'coach',
                 'email' => 'coach@coach.com', 
-                'password' => bcrypt('coach-1234'),
+                'password' => bcrypt('Coach-1234'),
                 'confirmed' => true
             ],
             [
@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
                 'name' => 'gimnasta',
                 'surname' => 'gimnasta',
                 'email' => 'gimnasta@gimnasta.com', 
-                'password' => bcrypt('gimnasta-1234'),
+                'password' => bcrypt('Gimnasta-1234'),
                 'confirmed' => true
             ]
         ]);

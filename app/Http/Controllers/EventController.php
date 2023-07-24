@@ -71,4 +71,17 @@ class EventController extends Controller
     //     }
     // }
     // TENGO QUE BUSCAR EN LA TABLA INTERMEDIA
+
+
+
+
+    //crear evento
+    // $request->validate([
+    //     'name' => 'required|string',
+    //     'start_date' => 'required|date|after:today', 
+    //     'end_date' => 'nullable|date|after:start_date',
+    //     'location' => 'required|string',
+    //     'comment' => 'nullable|string',
+    //     'pdf_path' => 'nullable|string',
+    // ]);
 }
