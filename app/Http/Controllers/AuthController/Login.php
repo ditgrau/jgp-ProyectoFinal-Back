@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AuthController;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -44,12 +45,17 @@ class Login extends Controller
 
             if($user->confirmed){
                 $token = $user->createToken('apiToken')->plainTextToken;
+            } else {
+                return response()->json([
+                    'message' => 'User not confirmed'
+                ], Response::HTTP_UNAUTHORIZED);
             }
 
             return response()->json([
                 'data' => $user,
                 'token' => $token
             ], Response::HTTP_CREATED);
+
 
         } catch (\Throwable $th) {
             Log::error('Error logging user in ' . $th->getMessage());

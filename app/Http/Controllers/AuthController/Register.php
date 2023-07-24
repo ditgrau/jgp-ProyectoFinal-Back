@@ -57,14 +57,14 @@ class Register extends Controller
 
             $newUser->group()->attach($validData['group']);
 
-            $token = $newUser->createToken('apiToken')->plainTextToken;
+            // $token = $newUser->createToken('apiToken')->plainTextToken;
 
             return response()->json([
                 'message' => 'User registered',
                 'success' => true,
                 'user' => $newUser,
                 'data' => $newUser_data,
-                'token' => $token,
+                // 'token' => $token,
             ], Response::HTTP_CREATED);
 
         } catch (\Throwable $th) {
