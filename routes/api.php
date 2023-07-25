@@ -26,6 +26,7 @@ Route::post('/login', Login::class);
 // GROUPS CONTROLLER
 Route::get('/getAllGroups', [GroupController::class, 'getAllGroups']);
 Route::get('/getMyGroups', [GroupController::class, 'getMyGroups'])->middleware('auth:sanctum');;
+Route::get('/getUsersByGroup/{id}', [GroupController::class, 'getUsersByGroup'])->middleware('auth:sanctum');
 
 // ROLES CONTROLLER
 Route::get('/getAllRoles', [RoleController::class, 'getAllRoles'])->middleware('auth:sanctum');
@@ -39,6 +40,7 @@ Route::get('/getAverage', [UserController::class, 'getAverage'])->middleware('au
 Route::get('/getUserUnconfirmed/{confirmed}', [UserAdminController::class, 'getUserUnconfirmed'])->middleware('auth:sanctum');
 Route::put('/updateConfirmation/{id}', [UserAdminController::class, 'updateConfirmation'])->middleware('auth:sanctum');
 Route::get('/getAllUsers', [UserAdminController::class, 'getAllUsers'])->middleware('auth:sanctum');
+Route::get('/getUserByName/{name}', [UserAdminController::class, 'getUserByName'])->middleware('auth:sanctum');
 
 // EVENT CONTROLLER
 Route::get('/getAllEvents', [EventController::class, 'getAllEvents'])->middleware('auth:sanctum');

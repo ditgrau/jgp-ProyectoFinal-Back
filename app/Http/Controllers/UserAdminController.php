@@ -18,7 +18,7 @@ class UserAdminController extends Controller
             $users = User::select('id', 'role_id', 'name', 'surname', 'email')
                 ->with('role')->with('group')
                 ->get();
-                // dd($users->toSql());
+            // dd($users->toSql());
 
             return response()->json([
                 'message' => 'Users retrieved',
@@ -121,6 +121,26 @@ class UserAdminController extends Controller
                 'success' => false,
                 'message' => 'Error updating user',
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function getUserByName($name)
+    {
+        try {
+            $user = User::where('name', 'like', '%' . $name . '%')->get();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Users retrieved by name',
+                'data' => $user
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            Log::error('Error getting user' . $th->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Error retrieving user',
+            ]);
         }
     }
 }
