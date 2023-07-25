@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\AuthController\Login;
 use App\Http\Controllers\AuthController\Register;
+use App\Http\Controllers\Event_typeController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\ResultController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\User_groupController;
 use App\Http\Controllers\UserAdminController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -31,6 +33,7 @@ Route::get('/getAllRoles', [RoleController::class, 'getAllRoles'])->middleware('
 // USER CONTROLLER
 Route::get('/profile', [UserController::class, 'profile'])->middleware('auth:sanctum');
 Route::put('/updateProfile', [UserController::class, 'updateProfile'])->middleware('auth:sanctum');
+Route::get('/getAverage', [UserController::class, 'getAverage'])->middleware('auth:sanctum');
 
 // USER CONTROLLER - ADMIN
 Route::get('/getUserUnconfirmed/{confirmed}', [UserAdminController::class, 'getUserUnconfirmed'])->middleware('auth:sanctum');
@@ -50,6 +53,8 @@ Route::get('/getMyResults', [ResultController::class, 'getMyResults'])->middlewa
 Route::get('/myLastResults', [ResultController::class, 'myLastResults'])->middleware('auth:sanctum');
 
 
+// EVENT_TYPE CONTROLLER
+Route::get('/getAllEventTypes', [Event_typeController::class, 'getAllEventTypes'])->middleware('auth:sanctum');
 
-
-Route::get('/getAverage', [UserController::class, 'getAverage'])->middleware('auth:sanctum');
+// USER_GROUP CONTROLLER
+Route::get('/usersByGroupId/{id}', [User_groupController::class, 'usersByGroupId'])->middleware('auth:sanctum');
