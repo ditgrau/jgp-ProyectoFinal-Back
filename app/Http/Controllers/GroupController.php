@@ -53,4 +53,26 @@ class GroupController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    public function getUsersByGroup($groupId)
+    {
+        try {
+            $users = Group::where('id', $groupId)
+                ->with('user')
+                ->get()
+                ->pluck('user');
+            
+            return response()->json([
+                'message' => 'Users retrieved',
+                'data' => $users,
+                'success' => true
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            Log::error('Error retrieving events ' . $th->getMessage());
+
+            return response()->json([
+                'message' => 'Error retrieving events'
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
 }
