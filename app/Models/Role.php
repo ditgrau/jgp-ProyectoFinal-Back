@@ -12,6 +12,11 @@ class Role extends Model
     public function user(){
         return $this -> hasMany(User::class);
     }
+    
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 
     protected $table = 'roles';
 }

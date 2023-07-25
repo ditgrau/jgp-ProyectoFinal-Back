@@ -12,6 +12,11 @@ class Group extends Model
     public function user () {
         return $this->belongsToMany(User::class, 'user_group','group_id', 'user_id');
     }
+    
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 
     protected $table = 'group';
 }

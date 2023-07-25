@@ -21,6 +21,11 @@ class User_event extends Model
     public function event() {
         return $this->belongsTo(Event::class, 'event_id');
     }
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
     
     protected $table = 'user_event';
 }

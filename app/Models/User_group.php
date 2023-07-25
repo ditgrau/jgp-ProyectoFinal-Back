@@ -21,6 +21,11 @@ class User_group extends Model
     public function group() {
         return $this->belongsTo(Group::class, 'group_id');
     }
+
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
     
     protected $table = 'user_group';
 }
