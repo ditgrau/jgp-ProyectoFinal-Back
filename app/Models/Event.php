@@ -15,7 +15,8 @@ class Event extends Model
         'start_date',
         'end_date',
         'location',
-        'comment'
+        'comment',
+        'pdf_path'
     ];
 
     public function event_type(){
