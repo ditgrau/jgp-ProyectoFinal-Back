@@ -41,6 +41,7 @@ Route::get('/getUserUnconfirmed/{confirmed}', [UserAdminController::class, 'getU
 Route::put('/updateConfirmation/{id}', [UserAdminController::class, 'updateConfirmation'])->middleware('auth:sanctum');
 Route::get('/getAllUsers', [UserAdminController::class, 'getAllUsers'])->middleware('auth:sanctum');
 Route::get('/getUserByName/{name}', [UserAdminController::class, 'getUserByName'])->middleware('auth:sanctum');
+Route::get('/getUserById/{id}', [UserAdminController::class, 'getUserById'])->middleware('auth:sanctum');
 
 // EVENT CONTROLLER
 Route::get('/getAllEvents', [EventController::class, 'getAllEvents'])->middleware('auth:sanctum');

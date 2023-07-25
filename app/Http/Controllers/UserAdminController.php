@@ -56,7 +56,7 @@ class UserAdminController extends Controller
     public function getUserById($id)
     {
         try {
-            $user = User::with('user_data')->with('role:name')->with('group')->with('event')
+            $user = User::with('user_data')->with('role')->with('group')->with('event')->with('result')
                 ->find($id);
             return response()->json([
                 'success' => true,
