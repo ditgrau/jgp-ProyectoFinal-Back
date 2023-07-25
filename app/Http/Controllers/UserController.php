@@ -99,7 +99,7 @@ class UserController extends Controller
             $positions = Result::where('user_id', $userId)->pluck('ranking');
             
             $average = $totals->avg();
-            $ranking = $positions->avg();
+            $ranking = round($positions->avg());
             $updatedUser = User::find($userId)->update(['average' => $average]);
 
             return response()->json([
