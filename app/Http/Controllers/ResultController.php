@@ -83,6 +83,26 @@ class ResultController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    
+    public function getResultById($id)
+    {
+        try {
+            $result = Result::with('user')->find($id);
+            return response()->json([
+                'success' => true,
+                'message' => 'Result retrieved by id',
+                'data' => $result
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            Log::error('Error getting result' . $th->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Error retrieving result',
+            ]);
+        }
+    }
 }
 
 

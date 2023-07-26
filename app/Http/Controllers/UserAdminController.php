@@ -143,4 +143,53 @@ class UserAdminController extends Controller
             ]);
         }
     }
+
+    // public function updateUser(Request $request)
+    // {
+    //     try {
+
+    //         $validator = Validator::make($request->all(), [
+    //             'name' => 'nullable|string',
+    //             'surname' => 'nullable|string',
+    //         ]);
+
+    //         $validatorData = Validator::make($request->all(), [
+    //             'birth_date' => 'nullable|date',
+    //             'dni' => 'nullable|string|regex:/^[0-9]{8}[A-Za-z]$/',
+    //             'contact_email' => 'nullable|email',
+    //             'first_phone' => 'nullable|regex:/^\d{9}$/',
+    //             'second_phone' => 'nullable|regex:/^\d{9}$/',
+    //         ]);
+
+    //         if ($validator->fails() || $validatorData->fails()) {
+    //             if ($validator->fails()) {
+    //                 return response()->json($validator->errors(), 400);
+    //             } else if ($validatorData->fails()) {
+    //                 return response()->json($validatorData->errors(), 400);
+    //             }
+    //         }
+
+    //         $validUser = $validator->validated();
+    //         $user = auth()->user();
+    //         $currentUser = User::find($user->id)->update($validUser);
+            
+    //         $validUserData = $validatorData->validated();
+    //         $currentDataUser = User_data::where('user_id', $user->id)->first();
+    //         $currentDataUser->update($validUserData);
+
+    //         return response()->json([
+    //             'message' => 'User profile updated',
+    //             'success' => true,
+    //             'user' => $currentUser,
+    //             'profile' => $validUser,
+    //             'newData' => $validUserData
+    //         ], Response::HTTP_OK);
+
+    //     } catch (\Throwable $th) {
+    //         Log::error('Error updating user profile: ' . $th->getMessage());
+    //         return response()->json([
+    //             'message' => 'Error updating user profile'
+    //         ], Response::HTTP_INTERNAL_SERVER_ERROR);
+    //     }
+    // }
 }
