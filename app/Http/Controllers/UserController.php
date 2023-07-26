@@ -68,7 +68,7 @@ class UserController extends Controller
             $validUser = $validator->validated();
             $user = auth()->user();
             $currentUser = User::find($user->id)->update($validUser);
-            
+
             $validUserData = $validatorData->validated();
             $currentDataUser = User_data::where('user_id', $user->id)->first();
             $currentDataUser->update($validUserData);
@@ -80,7 +80,6 @@ class UserController extends Controller
                 'profile' => $validUser,
                 'newData' => $validUserData
             ], Response::HTTP_OK);
-
         } catch (\Throwable $th) {
             Log::error('Error updating user profile: ' . $th->getMessage());
             return response()->json([
@@ -89,7 +88,7 @@ class UserController extends Controller
         }
     }
 
-    public function getAverage() 
+    public function getAverage()
     {
         try {
             $user = auth()->user();
@@ -97,7 +96,7 @@ class UserController extends Controller
 
             $totals = Result::where('user_id', $userId)->pluck('total');
             $positions = Result::where('user_id', $userId)->pluck('ranking');
-            
+
             $average = $totals->avg();
             $cleanAverage = number_format($average, 3);
             $ranking = round($positions->avg());
@@ -110,7 +109,6 @@ class UserController extends Controller
                 'ranking' => $ranking,
                 'success' => true
             ], Response::HTTP_OK);
-
         } catch (\Throwable $th) {
             Log::error('Error retrieving results ' . $th->getMessage());
 
@@ -120,7 +118,29 @@ class UserController extends Controller
         }
     }
 
-    
+    public function clubAverage()
+    {
+        try {
+            $allAverages = User::where('role_id', 3)
+            ->pluck('average');
+
+            $clubAverage = $allAverages->avg();
+            $finalAverage = number_format($clubAverage, 3);
+
+            return response()->json([
+                'message' => 'Results retrieved',
+                'data' => $allAverages,
+                'club' => $finalAverage,
+                'success' => true
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            Log::error('Error retrieving results ' . $th->getMessage());
+
+            return response()->json([
+                'message' => 'Error retrieving results'
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
 }
 
 
