@@ -7,6 +7,7 @@ use App\Models\User_data;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
@@ -122,7 +123,7 @@ class UserController extends Controller
     {
         try {
             $allAverages = User::where('role_id', 3)
-            ->pluck('average');
+                ->pluck('average');
 
             $clubAverage = $allAverages->avg();
             $finalAverage = number_format($clubAverage, 3);
@@ -139,6 +140,51 @@ class UserController extends Controller
             return response()->json([
                 'message' => 'Error retrieving results'
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function updateCredentials(Request $request)
+    {
+        try {
+
+            $validator = Validator::make($request->all(), [
+                'current_password' => 'required',
+                'new_password' => 'required|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/',
+                'password' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json($validator->errors(), 400);
+            }
+
+            $validUser = $validator->validated();
+            $user = auth()->user();
+            $userPassword = $user->password;
+            $currentPassword = bcrypt($validUser['current_password']);
+            $newPassword = bcrypt($validUser['new_password']);
+
+            if ($currentPassword !== $userPassword) {
+                return response()->json(['message' => 'Introduzca una contraseña válida'], 400);
+            }
+
+            if ($validUser['new_password'] !== $validUser['password']) {
+                return response()->json(['message' => 'Las contraseñas tienen que coincidir'], 400);
+            }
+
+            if ($validUser['current_password'] === $validUser['new_password']) {
+                return response()->json(['message' => 'La nueva contraseña no puede coincidir con la anterior.'], 400);
+            }
+
+            $updatePass = User::where('password', $currentPassword)
+            ->where('id', $user->id)
+            ->first();
+
+            $updatePass->update($newPassword);
+            return response()->json([
+                'message' => 'Contraseña actualizada correctamente.'], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error upating password'], 500);
         }
     }
 }

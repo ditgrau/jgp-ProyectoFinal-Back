@@ -36,6 +36,7 @@ Route::get('/profile', [UserController::class, 'profile'])->middleware('auth:san
 Route::put('/updateProfile', [UserController::class, 'updateProfile'])->middleware('auth:sanctum');
 Route::get('/getAverage', [UserController::class, 'getAverage'])->middleware('auth:sanctum');
 Route::get('/clubAverage', [UserController::class, 'clubAverage'])->middleware('auth:sanctum');
+Route::put('/updateCredentials', [UserController::class, 'updateCredentials'])->middleware('auth:sanctum');
 
 // USER CONTROLLER - ADMIN
 Route::get('/getUserUnconfirmed/{confirmed}', [UserAdminController::class, 'getUserUnconfirmed'])->middleware('auth:sanctum');
