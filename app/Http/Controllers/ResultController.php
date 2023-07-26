@@ -43,9 +43,12 @@ class ResultController extends Controller
 
             $results = Result::where('user_id', $userId)->get();
             
+            $idResults = Result::where('user_id', $userId)->pluck('id');
+ 
             return response()->json([
                 'message' => 'Results retrieved',
                 'data' => $results,
+                'idResults' => $idResults,
                 'success' => true
             ], Response::HTTP_OK);
 

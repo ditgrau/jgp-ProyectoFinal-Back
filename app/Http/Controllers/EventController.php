@@ -56,6 +56,7 @@ class EventController extends Controller
             $userId = $user->id;
             $events = User_event::where('user_id', $userId)
                 ->with('event')
+                
                 ->get();
 
             return response()->json([
