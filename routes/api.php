@@ -48,6 +48,7 @@ Route::put('/updateUser', [UserAdminController::class, 'updateUser'])->middlewar
 // EVENT CONTROLLER
 Route::get('/getAllEvents', [EventController::class, 'getAllEvents'])->middleware('auth:sanctum');
 Route::get('/getMyEvents', [EventController::class, 'getMyEvents'])->middleware('auth:sanctum');
+Route::get('/myEventById/{id}', [EventController::class, 'myEventById'])->middleware('auth:sanctum');
 Route::get('/getEventsByType/{id}', [EventController::class, 'getEventsByType'])->middleware('auth:sanctum');
 Route::get('/myEventsByType/{id}', [EventController::class, 'myEventsByType'])->middleware('auth:sanctum');
 Route::post('/newEvent', [EventController::class, 'newEvent'])->middleware('auth:sanctum');

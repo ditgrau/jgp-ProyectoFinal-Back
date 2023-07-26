@@ -56,7 +56,7 @@ class EventController extends Controller
             $userId = $user->id;
             $events = User_event::where('user_id', $userId)
                 ->with('event')
-                
+
                 ->get();
 
             return response()->json([
@@ -107,13 +107,37 @@ class EventController extends Controller
                 'success' => true,
                 'event' => $newEvent,
             ], Response::HTTP_CREATED);
-
         } catch (\Throwable $th) {
             Log::error('Error registering user ' . $th->getMessage());
 
             return response()->json([
                 'message' => 'Error registering user'
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function myEventById($id)
+    {
+        try {
+            $user = auth()->user();
+            $userId = $user->id;
+            $result = User_event::where('event_id', $id)
+                ->where('user_id', $userId)
+                ->with('event')
+                ->first();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Result retrieved by id',
+                'data' => $result
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            Log::error('Error getting result' . $th->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Error retrieving result',
+            ]);
         }
     }
 }
