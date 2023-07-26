@@ -56,6 +56,7 @@ Route::get('/getAllResults', [ResultController::class, 'getAllResults'])->middle
 Route::get('/getMyResults', [ResultController::class, 'getMyResults'])->middleware('auth:sanctum');
 Route::get('/myLastResults', [ResultController::class, 'myLastResults'])->middleware('auth:sanctum');
 Route::get('/getResultById/{id}', [ResultController::class, 'getResultById'])->middleware('auth:sanctum');
+Route::post('/addResult', [ResultController::class, 'addResult'])->middleware('auth:sanctum');
 
 // EVENT_TYPE CONTROLLER
 Route::get('/getAllEventTypes', [Event_typeController::class, 'getAllEventTypes'])->middleware('auth:sanctum');
