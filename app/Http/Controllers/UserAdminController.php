@@ -182,10 +182,9 @@ class UserAdminController extends Controller
 
             if (!$user) {
                 return response()->json([
-                    'message' => 'User not found'
+                    'message' => 'Usuario no encontrado'
                 ], Response::HTTP_NOT_FOUND);
             }
-
             if ($user->result) {
                 foreach ($user->result as $result) {
                     $result->delete();
@@ -204,17 +203,16 @@ class UserAdminController extends Controller
             if ($user->user_data) {
                 $user->user_data->delete();
             }
-            
             $user->delete();
 
             return response()->json([
-                'message' => 'User deleted'
+                'message' => 'Usuario eliminado'
             ], Response::HTTP_OK);
         } catch (\Throwable $th) {
-            Log::error('Error deleting user ' . $th->getMessage());
+            Log::error('Error al eliminar usuario: ' . $th->getMessage());
 
             return response()->json([
-                'message' => 'Error deleting user'
+                'message' => 'Error al eliminar usuario'
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
