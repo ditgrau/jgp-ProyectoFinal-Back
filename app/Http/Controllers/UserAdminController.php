@@ -212,7 +212,7 @@ class UserAdminController extends Controller
             // ...
 
             return response()->json([
-                'message' => 'User inactive'
+                'message' => 'User deleted'
             ], Response::HTTP_OK);
         } catch (\Throwable $th) {
             Log::error('Error deleting user ' . $th->getMessage());
