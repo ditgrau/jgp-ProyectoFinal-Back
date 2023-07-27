@@ -198,7 +198,7 @@ class UserAdminController extends Controller
             }
             if ($user->group) {
                 foreach ($user->group as $group) {
-                    $user->event()->detach($group->id);
+                    $user->group()->detach($group->id);
                 }
             }
             if ($user->user_data) {
@@ -206,10 +206,6 @@ class UserAdminController extends Controller
             }
             
             $user->delete();
-
-            // Eliminar las relaciones restantes, si existen
-
-            // ...
 
             return response()->json([
                 'message' => 'User deleted'
