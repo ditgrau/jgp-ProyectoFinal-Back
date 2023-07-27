@@ -26,7 +26,7 @@ Route::post('/login', Login::class);
 // GROUPS CONTROLLER
 Route::get('/getAllGroups', [GroupController::class, 'getAllGroups']);
 Route::get('/getMyGroups', [GroupController::class, 'getMyGroups'])->middleware('auth:sanctum');;
-Route::get('/getUsersByGroup/{id}', [GroupController::class, 'getUsersByGroup'])->middleware('auth:sanctum , isAdmin');
+Route::get('/getUsersByGroup/{id}', [GroupController::class, 'getUsersByGroup'])->middleware('auth:sanctum');
 
 // ROLES CONTROLLER
 Route::get('/getAllRoles', [RoleController::class, 'getAllRoles'])->middleware('auth:sanctum, isAdmin');
