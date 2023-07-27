@@ -155,7 +155,26 @@ class ResultController extends Controller
         }
     }
 
+    
+    public function deleteResult($id){
+        try {
+            $user = auth()->user();
+            $userId = $user->id;
+            $result = Result::where('id', $id)->where('user_id', $userId)->first();
 
+            $result->delete();
+
+            return response()->json([
+                'message' => 'Result deleted'
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            Log::error('Error deleting result and user: ' . $th->getMessage());
+    
+            return response()->json([
+                'message' => 'Error deleting result and user'
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }    
 }
 
 
