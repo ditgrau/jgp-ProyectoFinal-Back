@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\User_event;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -56,12 +57,14 @@ class EventController extends Controller
             $userId = $user->id;
             $events = User_event::where('user_id', $userId)
                 ->with('event')
-
                 ->get();
+
+            $three = $events->take(3);
 
             return response()->json([
                 'message' => 'Events retrieved',
                 'data' => $events,
+                'three' => $three,
                 'success' => true,
             ], Response::HTTP_OK);
         } catch (\Throwable $th) {
@@ -124,6 +127,27 @@ class EventController extends Controller
             $result = User_event::where('event_id', $id)
                 ->where('user_id', $userId)
                 ->with('event')
+                ->first();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Result retrieved by id',
+                'data' => $result
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            Log::error('Error getting result' . $th->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Error retrieving result',
+            ]);
+        }
+    }
+
+    public function getEventById($id)
+    {
+        try {
+            $result = Event::where('id', $id)
                 ->first();
 
             return response()->json([
