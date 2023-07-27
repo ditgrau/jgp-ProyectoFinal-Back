@@ -16,7 +16,7 @@ class ResultController extends Controller
     public function getAllResults() 
     {
         try {
-            $results = Result::all();
+            $results = Result::with('user')->get();
             
             return response()->json([
                 'message' => 'Results retrieved',

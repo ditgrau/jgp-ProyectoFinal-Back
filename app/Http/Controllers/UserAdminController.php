@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Group;
+use App\Models\Result;
+use App\Models\User_data;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -144,52 +146,80 @@ class UserAdminController extends Controller
         }
     }
 
-    // public function updateUser(Request $request)
-    // {
-    //     try {
+    public function updateUser(Request $request)
+    {
+        try {
 
-    //         $validator = Validator::make($request->all(), [
-    //             'name' => 'nullable|string',
-    //             'surname' => 'nullable|string',
-    //         ]);
+            $validator = Validator::make($request->all(), [
+                'role_id' => 'nullable|integer',
+                'user_id' => 'required|integer',
+            ]);
 
-    //         $validatorData = Validator::make($request->all(), [
-    //             'birth_date' => 'nullable|date',
-    //             'dni' => 'nullable|string|regex:/^[0-9]{8}[A-Za-z]$/',
-    //             'contact_email' => 'nullable|email',
-    //             'first_phone' => 'nullable|regex:/^\d{9}$/',
-    //             'second_phone' => 'nullable|regex:/^\d{9}$/',
-    //         ]);
+            if ($validator->fails()) {
+                return response()->json($validator->errors(), 400);
+            }
+            $validData = $validator->validated();
 
-    //         if ($validator->fails() || $validatorData->fails()) {
-    //             if ($validator->fails()) {
-    //                 return response()->json($validator->errors(), 400);
-    //             } else if ($validatorData->fails()) {
-    //                 return response()->json($validatorData->errors(), 400);
-    //             }
-    //         }
+            $user = User::find($validData['user_id'])->update($validData['role_id']);
 
-    //         $validUser = $validator->validated();
-    //         $user = auth()->user();
-    //         $currentUser = User::find($user->id)->update($validUser);
+            return response()->json([
+                'message' => 'User profile updated',
+                'success' => true,
+                'user' => $user,
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            Log::error('Error updating user profile: ' . $th->getMessage());
+            return response()->json([
+                'message' => 'Error updating user profile'
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function deleteUserById($id)
+    {
+        try {
+            $user = User::with('user_data')->with('group')->with('event')->with('result')->find($id);
+
+            if (!$user) {
+                return response()->json([
+                    'message' => 'User not found'
+                ], Response::HTTP_NOT_FOUND);
+            }
+
+            if ($user->result) {
+                foreach ($user->result as $result) {
+                    $result->delete();
+                }
+            }
+            if ($user->event) {
+                foreach ($user->event as $event) {
+                    $user->event()->detach($event->id);
+                }
+            }
+            if ($user->group) {
+                foreach ($user->group as $group) {
+                    $user->event()->detach($group->id);
+                }
+            }
+            if ($user->user_data) {
+                $user->user_data->delete();
+            }
             
-    //         $validUserData = $validatorData->validated();
-    //         $currentDataUser = User_data::where('user_id', $user->id)->first();
-    //         $currentDataUser->update($validUserData);
+            $user->delete();
 
-    //         return response()->json([
-    //             'message' => 'User profile updated',
-    //             'success' => true,
-    //             'user' => $currentUser,
-    //             'profile' => $validUser,
-    //             'newData' => $validUserData
-    //         ], Response::HTTP_OK);
+            // Eliminar las relaciones restantes, si existen
 
-    //     } catch (\Throwable $th) {
-    //         Log::error('Error updating user profile: ' . $th->getMessage());
-    //         return response()->json([
-    //             'message' => 'Error updating user profile'
-    //         ], Response::HTTP_INTERNAL_SERVER_ERROR);
-    //     }
-    // }
+            // ...
+
+            return response()->json([
+                'message' => 'User inactive'
+            ], Response::HTTP_OK);
+        } catch (\Throwable $th) {
+            Log::error('Error deleting user ' . $th->getMessage());
+
+            return response()->json([
+                'message' => 'Error deleting user'
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
 }
