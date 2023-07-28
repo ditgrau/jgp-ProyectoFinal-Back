@@ -121,6 +121,32 @@ class EventController extends Controller
         }
     }
 
+    public function addUserToEvent(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'user_ids' => 'nullable|array',
+            'user_ids.*' => 'integer|exists:user,id',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
+        $userIds = $validator->validated()['user_ids'] ?? [];
+
+        try {
+            $event = Event::find($id);
+            if (!$event) {
+                return response()->json(['error' => 'El evento no existe'], 404);
+            }
+
+            $event->users()->attach($userIds);
+
+            return response()->json(['message' => 'Usuarios agregados al evento'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al agregar usuarios'], 500);
+        }
+    }
     public function myEventById($id)
     {
         try {

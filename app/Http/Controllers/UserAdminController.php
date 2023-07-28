@@ -146,7 +146,7 @@ class UserAdminController extends Controller
         }
     }
 
-    public function updateUser(Request $request, $id)
+    public function updateUserRole(Request $request, $id)
     {
         try {
 
@@ -174,6 +174,43 @@ class UserAdminController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    public function updateUserGroup(Request $request, $id)
+{
+    try {
+        $validator = Validator::make($request->all(), [
+            'group' => 'nullable|array',
+            'group.*' => 'integer|exists:group,id',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
+        $validData = $validator->validated();
+
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
+        $user->group()->sync($validData['group']);
+
+        return response()->json([
+            'message' => 'User groups updated',
+            'success' => true,
+            'user' => $user,
+        ], Response::HTTP_OK);
+
+    } catch (\Throwable $th) {
+        Log::error('Error updating user groups: ' . $th->getMessage());
+        return response()->json([
+            'message' => 'Error updating user groups'
+        ], Response::HTTP_INTERNAL_SERVER_ERROR);
+    }
+}
+
 
     public function deleteUserById($id)
     {

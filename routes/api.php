@@ -45,7 +45,8 @@ Route::get('/getAllUsers', [UserAdminController::class, 'getAllUsers'])->middlew
 Route::get('/getUserByName/{name}', [UserAdminController::class, 'getUserByName'])->middleware('auth:sanctum', 'isAdmin');
 Route::get('/getUserById/{id}', [UserAdminController::class, 'getUserById'])->middleware('auth:sanctum', 'isAdmin');
 Route::delete('/deleteUserById/{id}', [UserAdminController::class, 'deleteUserById'])->middleware('auth:sanctum', 'isAdmin');
-Route::put('/updateUser/{id}', [UserAdminController::class, 'updateUser'])->middleware('auth:sanctum', 'isAdmin');
+Route::put('/updateUserRole/{id}', [UserAdminController::class, 'updateUserRole'])->middleware('auth:sanctum', 'isAdmin');
+Route::put('/updateUserGroup/{id}', [UserAdminController::class, 'updateUserGroup'])->middleware('auth:sanctum', 'isAdmin');
 
 // EVENT CONTROLLER
 Route::get('/getAllEvents', [EventController::class, 'getAllEvents'])->middleware('auth:sanctum', 'isAdmin');
@@ -55,6 +56,7 @@ Route::get('/getEventById/{id}', [EventController::class, 'getEventById'])->midd
 Route::get('/getEventsByType/{id}', [EventController::class, 'getEventsByType'])->middleware('auth:sanctum');
 Route::get('/myEventsByType/{id}', [EventController::class, 'myEventsByType'])->middleware('auth:sanctum');
 Route::post('/newEvent', [EventController::class, 'newEvent'])->middleware('auth:sanctum, isAdmin');
+Route::post('/addUserToEvent/{id}', [EventController::class, 'addUserToEvent'])->middleware('auth:sanctum, isAdmin');
 
 // RESULT CONTROLLER
 Route::get('/getAllResults', [ResultController::class, 'getAllResults'])->middleware('auth:sanctum');
