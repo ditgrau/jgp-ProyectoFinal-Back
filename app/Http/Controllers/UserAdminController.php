@@ -146,13 +146,12 @@ class UserAdminController extends Controller
         }
     }
 
-    public function updateUser(Request $request)
+    public function updateUser(Request $request, $id)
     {
         try {
 
             $validator = Validator::make($request->all(), [
                 'role_id' => 'nullable|integer',
-                'user_id' => 'required|integer',
             ]);
 
             if ($validator->fails()) {
@@ -160,7 +159,8 @@ class UserAdminController extends Controller
             }
             $validData = $validator->validated();
 
-            $user = User::find($validData['user_id'])->update($validData['role_id']);
+            $user = User::find($id);
+            $user->update($validData);
 
             return response()->json([
                 'message' => 'User profile updated',
