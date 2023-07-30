@@ -1,66 +1,125 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+__<p align="center">Proyecto Final - Backend PHP - Semana 12</p>__
+<h2 align="center">⚙️ Último proyecto de backend ⚙️</h2>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<details>
+  <summary><b>Contenido</b> 📝</summary>
+  <ol>
+    <li><a href="#sobre-el-proyecto">Sobre el proyecto</a></li>
+    <li><a href="#sobre-clabs">Sobre clabs</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#diagrama-bd">Diagrama</a></li>
+    <li><a href="#instalación-en-local">Instalación</a></li>
+    <li><a href="#endpoints">Endpoints</a></li>
+    <li><a href="#licencia">Licencia</a></li>
+    <li><a href="#agradecimientos">Agradecimientos</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ol>
+</details>
+
+
+### Sobre el proyecto
+
+Backend del proyecto final del bootcamp Full Stack Developer de GeeksHubs Academy.
+Hemos desarrollado una API REST utilizando Laravel para alimentar las vistas del frontend.
+Este proyecto ha sido íntegramente desarrollado, tanto frontend como backend, en 12 días. Será maravilloso seguir desarrollando este proyecto más allá de su fecha de entrega.
+
+### Sobre clabs
+
+Mi aplicación nace de la idea de digitalizar ciertos procedimientos que se realizan en los clubes de gimnasia rítmica y como sitio donde las mismas gimnastas pueden recoger sus puntuaciones, tener sus estadísticas e información relevante para el desempeño de su práctica deportiva.
+
+### Stack
+<div align="center">
+    <a href="https://www.postman.com/">
+        <img src= "https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white"/>
+    </a>
+    <a href="https://www.mysql.com/">
+        <img src= "https://img.shields.io/badge/mysql-3E6E93?style=for-the-badge&logo=mysql&logoColor=white"/>
+    </a>
+    <a href="https://git-scm.com/">
+        <img src= "https://img.shields.io/badge/git-F54D27?style=for-the-badge&logo=git&logoColor=white"/>
+    </a>
+    <a href="https://www.docker.com/">
+        <img src= "https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"/>
+    </a>
+    <a href="https://www.php.net/">
+        <img src= "https://img.shields.io/badge/php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white"/>
+    </a>
+<a href="https://laravel.com">
+        <img src= "https://img.shields.io/badge/laravel-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white"/>
+    </a>
+</div>
+
+### Diagrama BD
+!['imagen-db'](./public/Captura%20de%20pantalla%202023-07-18%20132903.png)
+
+### Instalación en local
+1. Clonar el repositorio: `$git clone 'url-repository'`
+2. Instalamos dependencias: `$ compose install`
+3. Crea un archivo .env siguiendo la plantilla .env.example e ingresa todas las credenciales.
+4. Inicia el servidor con: ` $ php artisan serve `
+5. Conectamos el repositorio con la base de datos: 
+` $ php artisan migrate `
+` $ php artisan db:seed `
+
+
+### Endpoints
+<details>
+<summary>Endpoints</summary>
+<ol>
+    <li>Login</li>
+    <li>Registro</li>
+    <li>Obtener todos los grupos</li>
+    <li>Obtener todos mis grupos</li>
+    <li>Obtener usuarios por grupo</li>
+    <li>Obtener todos los roles</li>
+    <li>Mi perfil</li>
+    <li>Modificar mi perfil</li>
+    <li>Obtener mi media</li>
+    <li>Obtener la media del club</li>
+    <li>Obtener los usuarios no confirmados</li>
+    <li>Modificar confirmación</li>
+    <li>Obtener todos los usuarios</li>
+    <li>Obtener usuarios por nombre</li>
+    <li>Obtener usuarios por id</li>
+    <li>Eliminar user</li>
+    <li>Modificar role de user</li>
+    <li>Modificar grupo de user</li>
+    <li>Obtener todos los eventos</li>
+    <li>Obtener todos mis eventos</li>
+    <li>Obtener eventos por id</li>
+    <li>Obtener mis eventos por id</li>
+    <li>Obtener eventos por tipo</li>
+    <li>Añadir evento</li>
+    <li>Mis ultimos resultados</li>
+    <li>Obtener resultados por id</li>
+    <li>Eliminar resultados</li>
+    <li>Añadir resultado</li>
+    <li>Eliminar user</li>
+    <li>Modificar role de user</li>
+    <li>Modificar grupo de user</li>
+    <li>Obtener todos los eventos</li>
+  </ol>
+</details>
+
+
+### Licencia
+📝 La licencia utilizada es una MIT License. Este proyecto ha sido realizado por mí, Judit Grau Puigdollers, inéditamente para la tarea 'Backend Clínica Dental' en la edición de abril 2023 de GeeksHubs Academy.
+
+``` js
+ const developer = "ditGrau";
+ console.log("Desarrollado por: " + developer);
+```  
+
+### Agradecimientos:
+
+Agradezco a mis compañeros y docentes, y como siempre, en especial a Coral. Que lo que ha unido el código no lo separe nadie, amiga. Os dejo su GitHub, vale mucho la pena.
+
+- **CORAL**  
+<a href="https://github.com/Coral-JM" target="_blank"><img src="https://img.shields.io/badge/github-24292F?style=for-the-badge&logo=github&logoColor=lime" target="_blank"></a> 
+
+<h3 align="center">Contacto</h3>
+
+<div align="center">
+ 📩 <a href = "mailto:juditgraup@gmail.com"><img src="https://img.shields.io/badge/Gmail-C6362C?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>👋🏼<a href="https://www.linkedin.com/in/linkedinUser/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
 </p>
-
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+</div>
