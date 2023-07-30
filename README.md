@@ -103,7 +103,7 @@ Mi aplicación nace de la idea de digitalizar ciertos procedimientos que se real
 
 
 ### Licencia
-📝 La licencia utilizada es una MIT License. Este proyecto ha sido realizado por mí, Judit Grau Puigdollers, inéditamente para la tarea 'Backend Clínica Dental' en la edición de abril 2023 de GeeksHubs Academy.
+📝 La licencia utilizada es una MIT License. Este proyecto ha sido realizado por mí, Judit Grau Puigdollers, inéditamente para la tarea 'Proyecto Final' en la edición de abril 2023 de GeeksHubs Academy.
 
 ``` js
  const developer = "ditGrau";
